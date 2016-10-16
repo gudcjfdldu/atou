@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+ 
+{% load staticfiles %}
+<html>
+<head>
+  <meta charset="utf-8">
+  <title> Atou register page </title>
+    
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'tutor/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{% static 'tutor/vendor/font-awesome/css/font-awesome.min.css' %}" rel="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'tutor/css/signup.css' %}" /> 
+
+</head>
+<body>
+  <div class="container">
+  <div class="main-login main-center">
+    <h4> *표시는 필수입력입니다.</h4>
+    {% if error_message %}
+    <p> {{ error_message }] </p>
+    {% endif %}
+    <form class="form-horizontal form-wrapper" method="post" action="{% url 'register' %}">
+      {% csrf_token %}
+	      	      <div class="form-group">
+			<label for="name" class="cols-sm-2 control-label">이름(필수입력)
+                        </label>
+			<div class="cols-sm-10">
+			  <div class="input-group">
+		            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+	              	    <input type="text" class="form-control" name="name" id="name"/>
+			  </div>
+			</div>
+		      </div>
+
+		      <div class="form-group">
+			<label for="name" class="cols-sm-2 control-label">학번(필수입력)
+                        </label>
+			<div class="cols-sm-10">
+			  <div class="input-group">
+		            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+	              	    <input type="text" class="form-control" name="number" id="number"/>
+			  </div>
+			</div>
+		      </div>
+
+		      <div class="form-group">
+			<label for="major" class="cols-sm-2 control-label">전공(필수입력)
+                        </label>
+			<div class="cols-sm-10">
+			  <div class="input-group">
+		            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+	              	    <input type="text" class="form-control" name="major" id="major"/>
+			  </div>
+			</div>
+		      </div>
+
+	              <div class="form-group">
+		        <label for="email" class="cols-sm-2 control-label">이메일(필수입력)
+                        </label>
+			<div class="cols-sm-10">
+			  <div class="input-group">
+			    <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+			    <input type="text" class="form-control" name="email" id="email"/>
+			  </div>
+			</div>
+	              </div>
+
+	              <div class="form-group">
+		        <label for="username" class="cols-sm-2 control-label">아이디(필수입력)
+                        </label>
+			<div class="cols-sm-10">
+			  <div class="input-group">
+		   	    <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+			    <input type="text" class="form-control" name="username" id="username"/>
+			  </div>
+			</div>
+		      </div>
+
+
+
+		      <div class="form-group">
+			<label for="password" class="cols-sm-2 control-label">비밀번호(필수입력)</label>
+			<div class="cols-sm-10">
+			  <div class="input-group">
+			    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+			    <input type="password" class="form-control" name="password" id="password"/>
+			  </div>
+			</div>
+		      </div>
+
+		      <div class="form-group">
+			<label for="confirm" class="cols-sm-2 control-label">비밀번호 재입력(필수입력)</label>
+			<div class="cols-sm-10">
+			  <div class="input-group">
+			    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+			    <input type="password" class="form-control" name="confirm" id="confirm"/>
+		   	  </div>
+			</div>
+		       </div>
+
+
+		      <div class="form-group ">
+		        <button type="submit" class="btn btn-primary btn-lg btn-block login-button">가입</button>
+		      </div>
+		    </form>
+		  </div>                
+                </div>
+  </body>
+</html>

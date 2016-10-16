@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Agency - Start Bootstrap Theme</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'tutor/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{% static 'tutor/vendor/font-awesome/css/font-awesome.min.css' %}" rel="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Theme CSS -->
+    <link href="{% static 'tutor/css/agency.min.css' %}" rel="stylesheet">
+    <link href="{% static 'tutor/css/index.css' %}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Atou</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                      <a href="#page-top"></a>
+                    </li>
+                    <li>
+                      <a class="page-scroll" href="#services">Services</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li>
+                      <a class="page-scroll" href="{% url 'board.teacher' %}">I'm teacher</a>
+                    </li>
+                    {% else %}
+                    <li>
+                      <a class="page-scroll" href="#portfolio">login</a>
+                    </li>
+                    {% endif %}
+
+                    {% if user.is_authenticated %}
+                    <li>
+                      <a class="page-scroll" href="{% url 'board.student' %}">I'm student</a>
+                    </li>
+                    {% else %}
+                    <li>
+                      <a class="page-scroll" href="#about">about</a>   
+                    </li>
+                   
+
+                    <li>
+                        <a class="page-scroll" href="#team">Team</a>
+                    </li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a class="page-scroll" href="{% url 'logout' %}">logout</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in">Welcome To Ajou Tutoring!</div>
+                <div class="intro-heading">IT'S NICE TO MEET YOU</div>
+                <a href="#services" class="page-scroll btn btn-xl">Tell Me More</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">서비스</h2>
+                    <h3 class="section-subheading text-muted">Atou의 서비스를 소개합니다.</h3>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                    <img class="atou-service-description" src="{% static 'tutor/img/service1.jpg' %}"/> 
+                    </span>
+                    <h4 class="service-heading">난 선생이고</h4>
+                    <p class="text-muted">아주대학교에 재학중인 과외 선생님을 찾을 수 있어요.</p>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                    <img class="atou-service-description" src="{% static 'tutor/img/service2.jpg' %}"/>
+                    </span>
+                    <h4 class="service-heading">넌 학생이야</h4>
+                    <p class="text-muted">아주대학교에 재학중인 과외 학생을 찾을 수 있어요.</p>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                    <img class="atou-service-description" src="{% static 'tutor/img/service3.jpg' %}"/>
+                    </span>
+                    <h4 class="service-heading">안전거래</h4>
+                    <p class="text-muted">아주대 학생 간의 신뢰도를 바탕으로 안전 거래를 할 수 있어요.</p>
+              </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid Section -->
+    {% if user.is_authenticated %}
+
+    {% else %}
+    <section id="portfolio" class="bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">로그인</h2>
+                    <h3 class="section-subheading text-muted">Atou의 서비스를 이용하기 위해서는 회원가입 후 로그인해야 합니다.</h3>
+                </div>
+            </div>
+            
+            <div class="row">
+              <p class="text-center">
+                <a href="#" class="btn btn-primary btn-log"
+                   role="button" data-toggle="modal" data-target="#login-modal">
+                   로그인
+                </a>
+              </p>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+    <!-- About Section -->
+    {% if user.is_authenticated %}
+
+    {% else %}
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Atou 소개</h2>
+                    <h3 class="section-subheading text-muted">Ajou Tutoring(이하 Atou)는 아주대 학생들 간의 과외를 중개 해주는 플랫폼을 지향합니다.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="timeline">
+                        <li>
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="{% static 'tutor/img/about/1.jpg' %}" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>2016</h4>
+                                    <h4 class="subheading">10월 16일</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">2016년 10월 16일은 Atou가 만들어진 날입니다.
+
+아주대학교 창업동아리 원천동밸리에서 마음이 맞는 학생들 4인이 모여   
+
+만들었습니다.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="timeline-inverted">
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="{% static 'tutor/img/about/2.jpg' %}" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>2016</h4>
+                                    <h4 class="subheading">10월 16일~</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">
+                                      중개하는 과외의 종류에 무관하게 아주대학교 학생들간에 건전한 지식의 교환이 이루어지기를 바랍니다.
+
+어학, 수강 과목, 프로그래밍 등 다양한 지식과 정보를 통해 서로 간에 유익한 시간을 유익하게 보내기를, 또한 수강자에게도 강의자에게도 안전한 관계가 형성될 수 있는 노력을 하는 것이 Atou의 역할일 것입니다.
+
+수강 학생의 강의 학생이 되고, 강의 학생이 다시 수강 학생이 되는 것, 이로 인한 지식과 정보의 교환을 위해 Atou는 함께합니다.     
+                                    </p>
+                               </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="{% static 'tutor/img/about/3.jpg' %}" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>2016</h4>
+                                    <h4 class="subheading">Atou의 안전거래 시스템</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">안전거래 시스템
+
+수강 학생이 강의 학생에게 바로 과외료를 바로 지불하지 않고, 우리(Atou)에게 과외료를 지급 후 실 수강 횟수에 따라 우리(Atou)가 강의 학생에게 수강료를 지불하는 방식의 결제 시스템, Atou의 안전거래 시스템입니다.
+
+
+
+수강 학생 <-> Atou(Ajou Tutoring) <-> 강의 학생 </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="timeline-inverted">
+                            <div class="timeline-image">
+                                <h4>Be Part
+                                    <br>Of Our
+                                    <br>Story!</h4>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Team Section -->
+    <section id="team" class="bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Atou를 만든 팀 소개</h2>
+                    <h3 class="section-subheading text-muted"></h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="team-member">
+                        <img src="{% static 'tutor/img/team/team2.jpg' %}" class="img-responsive img-circle team-img" alt="">
+                        <h4>Choi Chang Eun</h4>
+                        <p class="text-muted">Designer</p>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="team-member">
+                        <img src="{% static 'tutor/img/team/team3.jpg' %}" class="img-responsive img-circle team-img" alt="">
+                        <h4>Yoon Eui Seop</h4>
+                        <p class="text-muted">Marketer</p>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="team-member">
+                        <img src="{% static 'tutor/img/team/team4.jpg' %}" class="img-responsive img-circle team-img" alt="">
+                        <h4>Kim Ki Bin</h4>
+                        <p class="text-muted">Marketer</p>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="team-member">
+                        <img src="{% static 'tutor/img/team/team1.jpg' %}" class="img-responsive img-circle team-img" alt="">
+                        <h4>Hyung Chul Park</h4>
+                        <p class="text-muted">Developer</p>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <p class="large text-muted">
+                    아주대 학생들의 활발한 지식 교류를 위해 항상 노력하는 Atou입니다.
+
+Atou 이용 관련 문의는 xlazks01@gmail.com으로 부탁드립니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Aside -->
+    <aside class="clients">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <a href="#">
+                        <img src="{% static 'tutor/img/logos/woncheon.png' %}" class="img-responsive img-centered logo-img" alt="">
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="#">
+                        <img src="{% static 'tutor/img/logos/university.png' %}" class="img-responsive img-centered logo-img" alt="">
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="#">
+                        <img src="{% static 'tutor/img/logos/kiyun.PNG' %}" class="img-responsive img-centered logo-img" alt="">
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="#">
+                        <img src="{% static 'tutor/img/logos/creative-market.jpg' %}" class="img-responsive img-centered logo-img" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+        <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Atou 2016</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Portfolio Modals -->
+    <!-- Use the modals below to showcase details about your portfolio projects! -->
+
+    <!-- Portfolio Modal 1 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+                                <!-- Project Details Go Here -->
+                                <h2>Project Name</h2>
+                                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                <img class="img-responsive img-centered" src="img/portfolio/roundicons-free.png" alt="">
+                                <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                <p>
+                                    <strong>Want these icons in this portfolio item sample?</strong>You can download 60 of them for free, courtesy of <a href="https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc">RoundIcons.com</a>, or you can purchase the 1500 icon set <a href="https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc">here</a>.</p>
+                                <ul class="list-inline">
+                                    <li>Date: July 2014</li>
+                                    <li>Client: Round Icons</li>
+                                    <li>Category: Graphic Design</li>
+                                </ul>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Modal 2 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+                                <h2>Project Heading</h2>
+                                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                <img class="img-responsive img-centered" src="img/portfolio/startup-framework-preview.png" alt="">
+                                <p><a href="http://designmodo.com/startup/?u=787">Startup Framework</a> is a website builder for professionals. Startup Framework contains components and complex blocks (PSD+HTML Bootstrap themes and templates) which can easily be integrated into almost any design. All of these components are made in the same style, and can easily be integrated into projects, allowing you to create hundreds of solutions for your future projects.</p>
+                                <p>You can preview Startup Framework <a href="http://designmodo.com/startup/?u=787">here</a>.</p>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Modal 3 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+                                <!-- Project Details Go Here -->
+                                <h2>Project Name</h2>
+                                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                <img class="img-responsive img-centered" src="img/portfolio/treehouse-preview.png" alt="">
+                                <p>Treehouse is a free PSD web template built by <a href="https://www.behance.net/MathavanJaya">Mathavan Jaya</a>. This is bright and spacious design perfect for people or startup companies looking to showcase their apps or other projects.</p>
+                                <p>You can download the PSD template in this portfolio sample item at <a href="http://freebiesxpress.com/gallery/treehouse-free-psd-web-template/">FreebiesXpress.com</a>.</p>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Modal 4 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+                                <!-- Project Details Go Here -->
+                                <h2>Project Name</h2>
+                                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                <img class="img-responsive img-centered" src="img/portfolio/golden-preview.png" alt="">
+                                <p>Start Bootstrap's Agency theme is based on Golden, a free PSD website template built by <a href="https://www.behance.net/MathavanJaya">Mathavan Jaya</a>. Golden is a modern and clean one page web template that was made exclusively for Best PSD Freebies. This template has a great portfolio, timeline, and meet your team sections that can be easily modified to fit your needs.</p>
+                                <p>You can download the PSD template in this portfolio sample item at <a href="http://freebiesxpress.com/gallery/golden-free-one-page-web-template/">FreebiesXpress.com</a>.</p>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Modal 5 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+                                <!-- Project Details Go Here -->
+                                <h2>Project Name</h2>
+                                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                <img class="img-responsive img-centered" src="img/portfolio/escape-preview.png" alt="">
+                                <p>Escape is a free PSD web template built by <a href="https://www.behance.net/MathavanJaya">Mathavan Jaya</a>. Escape is a one page web template that was designed with agencies in mind. This template is ideal for those looking for a simple one page solution to describe your business and offer your services.</p>
+                                <p>You can download the PSD template in this portfolio sample item at <a href="http://freebiesxpress.com/gallery/escape-one-page-psd-web-template/">FreebiesXpress.com</a>.</p>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Modal 6 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+                                <!-- Project Details Go Here -->
+                                <h2>Project Name</h2>
+                                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                <img class="img-responsive img-centered" src="img/portfolio/dreams-preview.png" alt="">
+                                <p>Dreams is a free PSD web template built by <a href="https://www.behance.net/MathavanJaya">Mathavan Jaya</a>. Dreams is a modern one page web template designed for almost any purpose. It’s a beautiful template that’s designed with the Bootstrap framework in mind.</p>
+                                <p>You can download the PSD template in this portfolio sample item at <a href="http://freebiesxpress.com/gallery/dreams-free-one-page-web-template/">FreebiesXpress.com</a>.</p>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="{% static 'tutor/vendor/jquery/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'tutor/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="{% static 'tutor/js/jqBootstrapValidation.js' %}"></script>
+    <script src="{% static 'tutor/js/contact_me.js' %}"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="{% static 'tutor/js/agency.min.js' %}"></script>
+
+</body>
+
+<div id="logo">
+              <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-header" align="center">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">     
+                      <span class="glyphicon glyphicon-remove" aira-hidden="true"></span>
+                    </button>
+                  </div>
+
+
+                  <div id="div-forms">
+                    <form id="login-form" action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                      <div class="modal-body">
+                        <div id="div-login-msg">
+                          <div id="icon-login-msg" class="glyphicon 
+
+                         glyphicon-chevron-right"></div>
+
+                          <span id="text-login-msg">아이디</span>
+                        </div>
+		        <input id="login_username" class="form-control" type="text" placeholder="아이디" name="username">
+		        <input id="login_password" class="form-control" type="password" placeholder="비밀번호" name="password">
+                      </div>
+		      <div class="modal-footer">
+		        <div>
+			  <button type="submit" class="btn btn-primary btn-lg btn-block">
+			          로그인하기 </button>
+                        </div>
+		        <div class="register-button-wrapper">
+			  <button onclick="location.href = 'http://alphabo.tk:7777/tutor/register';" type="button" class="btn btn-primary register-button">
+			    회원가입
+                          </button>
+		        </div>
+	              </div>
+		    </form>
+	            <form id="lost-form" style="display:none;">
+		      <div class="modal-body">
+		        <div id="div-lost-msg">
+			  <div id="icon-lost-msg"
+			       class="glyphicon glyphicon-chevron-right">
+			  </div>
+			  <span id="text-lost-msg">Type your e-mail.</span>
+		        </div>
+		        <input id="lost_email" class="form-control" type="text" placeholder="E-Mail (type ERROR for error effect)" required>
+
+		      </div>
+   		      <div class="modal-footer">
+		      <div>
+			<button type="submit"
+				class="btn btn-primary btn-lg btn-block">Send</button>
+		      </div>
+                      <div>
+			<button id="lost_login_btn" type="button"
+                                class="btn btn-link">Log In</button>
+			<button id="lost_register_btn" type="button"
+				class="btn btn-link">Register</button>
+		      </div>
+		    </div>
+		  </form>
+		  <form id="register-form" style="display:none;">
+		    <div class="modal-body">
+		      <div id="div-register-msg">
+			<div id="icon-register-msg"
+			     class="glyphicon glyphicon-chevron-right">
+			</div>
+			<span id="text-register-msg">Register an account.</span>
+		      </div>
+		      <input id="register_username" class="form-control" type="text" placeholder="Username (type ERROR for error effect)" required>
+		      <input id="register_email" class="form-control" type="text" placeholder="E-Mail" required>
+		      <input id="register_password" class="form-control" type="password" placeholder="Password" required> 
+		    </div>
+		    <div class="modal-footer">
+		      <div>
+			<button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+		      </div>
+		      <div>
+			<button id="register_login_btn" type="button" class="btn btn-link">Log In</button>
+
+			<button id="register_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
+		      </div>
+		    </div>
+		  </form>
+		</div>
+              </div>
+	    </div>
+
+
+</html>
